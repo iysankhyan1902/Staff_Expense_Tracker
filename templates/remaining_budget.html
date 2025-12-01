@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remaining Budget</title>
+  <style>
+    body
+    {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    }
+    table
+    {
+    border-collapse: collapse;
+    width: 100%;
+    }
+    th, td
+    {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+     }
+    th
+    {
+    background-color: grey;
+    }
+    h2, h3 {
+    text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Remaining Budget</h2>
+
+<div class="container">
+  <h3>Total Budget: ₹{{ total_budget }}</h3>
+  <h3>Remaining Budget: ₹{{ remaining_budget }}</h3>
+  <h3>Total Expenses: ₹{{ total_spent }}</h3>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for expense in expenses %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ expense.description }}</td>
+      <td>₹{{ expense.amount }}</td>
+      <td>{{ expense.date }}</td>
+      <td><a href="{% url 'edit_expense' expense.id %}">Edit</a></td>
+      <td><a href="{% url 'delete' expense.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>
